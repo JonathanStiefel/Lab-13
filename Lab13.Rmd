@@ -1,0 +1,60 @@
+---
+title: "Lab13"
+author: "Jonathan Stiefel"
+date: "11/10/2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+##### Expectations for Lab 13
+The following are due at the end of the Week 13 lab period on Moodle:
+
+  + Complete Lab13 in RStudio Cloud and turn in knitted file.
+  + Complete Review Part 1 (started in Problem Session) and turn in a typed or scanned     in copy.
+  + Complete Review Part 2 and turn in a typed or scanned in copy.
+
+The following is due before the start of your Week 14 lab next week:
+
+ + Complete Review Part 3 and turn in a typed or scanned in copy.
+
+Review Parts 1, 2, and 3 are in the Word document titled "Lab13_Review_Assignment" posted on Moodle.
+
+##### Learning Objective
++ Compute confidence interval for mean y value in linear regression
++ Review course material
++ Review R code you've used this semester
+
+##### Problem 1
+**Linear Regression**: Confidence interval for a mean y value ($\hat y$)
+
+For this question we are going to look at the data from the 2008 season of Professional Golf (pga.csv), which you analyzed last week. We will be trying to predict a golfer's Fairway Accuracy (as a percentage) from their Average Driving Distance (in yards). 
+
+Use (or recreate) the linear regression model you created in Lab 12 for average accuracy percentage versus average driving distance. Comment your code.
+
+```{r}
+pga <- read.csv("pga.csv") #reads in pga file
+
+DD <- pga$Ave_Driving_Distance #creates driving distance variable
+DA <- pga$Fairway_Accuracy #creates driving accuracy variable
+L <- lm(DA~DD) #creates linear regression
+
+plot(DD,DA,ylab = "Driving Accuracy",xlab = "Driving Distance (yds)") #plots 
+abline(L, col="red",lwd=2) #plots linear regression
+
+```
+
+
+Compute and interpret a 95% confidence interval for the average accuracy percentage when the average driving distance is 302.5 yards.  Comment your code.
+```{r}
+predict(L,data.frame(DD=302.5),interval="confidence") #computes CI for DD=302.5
+```
+
+
+****
+##### Course Review
+Please refer to the Word file posted on Moodle titled "Lab13_Review_Assignment".  This file includes the review questions from Problem Session along with additional review questions about R. Follow the expectations instructions, written above and in the Word file.
+
